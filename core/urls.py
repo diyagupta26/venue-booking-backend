@@ -21,3 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('booking.urls')),  # ✅ Yeh line ho
 ]
+from django.contrib import admin
+from django.urls import path
+from booking.views import create_booking, get_bookings  # 👈 add this
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('create-booking/', create_booking, name='create_booking'),
+    path('get-bookings/', get_bookings, name='get_bookings'),  # 👈 new
+]

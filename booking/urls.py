@@ -22,3 +22,9 @@ urlpatterns = [
     path('submit-feedback/', views.submit_feedback),
     path('get-bookings/', views.get_bookings),  # ✅ NEW
 ]
+from django.urls import path
+from .views import get_bookings
+
+urlpatterns = [
+    path('get-bookings/', get_bookings, name='get_bookings'),
+]

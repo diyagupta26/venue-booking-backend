@@ -70,3 +70,20 @@ def get_bookings(request):
     bookings = Booking.objects.filter(venue_id=venue_id).values('booked_by', 'date', 'approved')
 
     return JsonResponse(list(bookings), safe=False)
+from django.http import JsonResponse
+from .models import Booking
+
+def get_bookings(request):
+    if request.method == 'GET':
+        bookings = Booking.objects.all()
+        data = [
+            {
+                'booked_by': b.booked_by,
+                'venue': b.venue.name,
+                'date': b.date,
+                'approved': b.approved
+            }
+            for b in bookings
+        ]
+        return JsonResponse(data, safe=False)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
