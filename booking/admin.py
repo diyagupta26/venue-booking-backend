@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import Venue, Booking, Feedback
+from .models import CustomUser, Venue  # Import both together
 
+# ✅ Register each model only once
+admin.site.register(CustomUser)
 admin.site.register(Venue)
-admin.site.register(Booking)
-admin.site.register(Feedback)
-
-# Register your models here.
